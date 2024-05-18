@@ -1,7 +1,22 @@
 {{ if not .IsHome }}
-{{ markdownify "[分类](/categories/) [标签](/tags/)" }}
-{{ with .Section }}
-<a href="{{ relURL . }}/index.xml" type="application/rss+xml" title="RSS feed">订阅</a>
-{{ end }}
-<a href="#">回到顶部</a>
+
+    <!-- blog 类型提供github编辑模式  -->
+    <!-- The 'blog' type provides GitHub editing button. -->
+    {{ if eq .Page.Type "blog" }}  
+      {{ $link := substr .Permalink 0 -1}}
+      {{ $dirFile := path.Split $link }}
+      {{ if ne $dirFile.File "blog"}}
+      <a href="https://github.com/{{ .Site.Params.githubUser }}/{{ .Site.Params.repoName }}/tree/{{ .Site.Params.contentBranchName }}/{{ $dirFile.File }}/index.md">Edit</a>
+      {{ end }}
+    {{ end }}
+
+    <!-- 在配置文件中设置底部按钮 -->
+    <!-- hugo.yaml control the menu_extra items -->
+    {{ range .Site.Params.menu_extra }}
+      <a href="{{ .url }}">{{ .name }}</a>
+    {{ end }}
+
+    <!-- The glider -->
+    <a title="Back to Top" href="#"><img style="width:1.5em;vertical-align:middle;" alt="Glider" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgc3Ryb2tlPSIjMDAwIj4KPHBhdGggc3Ryb2tlLXdpZHRoPSIxMjIiIHN0cm9rZS1kYXNoYXJyYXk9IjIsMzgiIGQ9Im05LDcwaDEyMk03MCw5djEyMiIvPgo8cGF0aCBzdHJva2Utd2lkdGg9IjMzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIGQ9Im03MCwzMGgwbTQwLDQwaDBtLTgwLDQwdjBtNDAsMGgwbTQwLDBoMCIvPgo8L3N2Zz4="></a>
+
 {{ end }}

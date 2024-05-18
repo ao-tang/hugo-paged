@@ -4,7 +4,8 @@
 <span class="author">{{ . }}</span>
 {{ end }}
 
-{{ $date := .Date | time.Format "06-01-02" }}
+<!-- debug date 01-01-01 -->
+{{ $date := "" }}
 
 {{ if .Params.date }}
     {{ $date = .Date | time.Format "06-01-02"  }}
@@ -16,6 +17,14 @@
 
 {{ with $date }}
 <span class="date">{{ . }}</span>
+{{ end }}
+
+<!-- 中文稿件 -->
+<!-- embed Chinese handscript -->
+{{ if eq .Page.Type "blog" }}  
+    {{ $link := substr .Permalink 0 -1}}
+    {{ $dirFile := path.Split $link }}
+    <a href="https://github.com/{{ .Site.Params.githubUser }}/{{ .Site.Params.repoName }}/tree/{{ .Site.Params.contentBranchName }}/{{ $dirFile.File }}/zh.md">中文稿</a>
 {{ end }}
 
 {{ end }}

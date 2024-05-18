@@ -1,5 +1,6 @@
 :root {
-  --body-width: 800px;
+  /* fullscreen */
+  --body-width: 992px;
   --bg-body: white;
   --bg-block: #f9f9f9;
   --border-color: #ddd;
@@ -221,7 +222,20 @@ table {
   margin: auto;
   border-top: 1px solid #aaa;
   border-bottom: 1px solid #aaa;
+
+  /* 防止溢出 */
+  /* overflow */
+  display: block;
+  width: auto;
+  max-width: -moz-fit-content;
+  max-width: fit-content; 
+  margin: 0 auto;
+  overflow-x: auto;
+  white-space: nowrap;
 }
+
+
+
 
 table thead th {
   border-bottom: 1px solid var(--border-color);
@@ -266,18 +280,29 @@ code {
   margin-left: 1em;
 }
 
-.toc-line,
-.subtitle,
+
 .meta-line {
   font-weight: normal;
   /*日期和categories、tag字体保持一致*/
-  font-size: small;
+  font-size: 1em;
+  /*日期的数字需要等宽*/
+  font-variant-numeric: tabular-nums;
+}
+
+.toc-line{
+  font-weight: normal;
+  /*日期和categories、tag字体保持一致*/
+  font-size: 1.2em;
   /*日期的数字需要等宽*/
   font-variant-numeric: tabular-nums;
 }
 
 .author+.date::before {
   content: " / ";
+}
+
+h1.title, .toc-line > a {
+  font-style: italic;
 }
 
 h1.title {
@@ -288,7 +313,7 @@ h1.title::before {
   content: "❦";
   font-style: normal;
   font-weight: normal;
-  font-size: 2em;
+  font-size: 7em;
   color: var(--border-color);
   opacity: .5;
   position: absolute;
@@ -337,7 +362,7 @@ li li {
   */
 
   pre,
-  table,
+  /* table, */
   .fullwidth {
     width: calc(min(100vw, var(--body-width)) - 5rem);
     margin-left: calc(50% + 2.5rem - min(100vw, var(--body-width)) / 2);
