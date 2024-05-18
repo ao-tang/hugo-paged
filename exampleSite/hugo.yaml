@@ -1,4 +1,4 @@
-baseurl: "/"
+baseurl: "http://localhost:1313"
 languageCode: "en-US"
 title: "A Hugo theme inspired by paged.js"
 theme: "hugo-paged"
@@ -23,6 +23,15 @@ params:
       alt: LOGO TEXT
       img: # a path to the logo
   footer: "&copy; [Yihui Xie](https://yihui.org) {Year}"
+  # some params
+  menu_extra:
+    - name: "Categories"
+      url: "/categories"
+    - name: "Tags"
+      url: "/tags"
+  githubUser: "username"
+  repoName: "repo-name"
+  contentBranchName: "main"
 
 markup:
   highlight:
