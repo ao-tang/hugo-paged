@@ -310,7 +310,7 @@ h1.title {
 }
 
 h1.title::before {
-  content: "❦";
+  content: "翱";
   font-style: normal;
   font-weight: normal;
   font-size: 7em;
